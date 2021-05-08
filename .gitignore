@@ -1,1 +1,4 @@
 /server/node_modules
+/server/dist
+/server/.env
+/programmatic-user-aws.csv

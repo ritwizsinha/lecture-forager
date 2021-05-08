@@ -1,0 +1,4 @@
+- May 8 2021
+    - Added basic typescript and node dev setup
+    - Worked on adding api for video upload to S3
+        - Created a new AWS USER and gave it programmatic access along with S3FUllAccessPolicy
