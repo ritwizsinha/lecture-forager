@@ -17,3 +17,24 @@ Good to have features:
 3. Finding out keywords from the transcription and removing ordinary and common words (a developer side thing but might improve search results)
 4. Adding subtitles to the video
 5. Summarizing a particular chunk of transcription to create sort of notes. (text summarization)
+
+
+- API ENDPOINTS THOUGHT OF
+
+POST /video
+GET /video
+GET /video/multiple
+
+
+TECH STACK AND OTHERS:
+
+1. React
+2. Material UI
+3. Typescript
+4. Webpack
+5. Mongo DB
+6. Node
+7. Redis
+8. AWS APIS
+9. Docker
+10. Webpack

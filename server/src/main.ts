@@ -7,9 +7,9 @@ const app = express();
 app.use(express.json());
 
 app.post('/upload', handleUploadMiddleware.single('file'), (req: Request, res: Response) => {
-  console.log(req.body);
-  console.log(req.file);
-  res.send({ message: 'Hello video found' });
+  res.status(201).json({
+    message: 'Successfully posted video'
+  });
 });
 
 app.listen(PORT, () => {

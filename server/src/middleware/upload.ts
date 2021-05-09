@@ -12,7 +12,7 @@ AWS.config.update({
     signatureVersion: 'v4'
 });
 
-export const S3 = new AWS.S3();
+const S3 = new AWS.S3();
 
 const getUniqFileName = (originalname: string) => {
     const name = uuidv4();
