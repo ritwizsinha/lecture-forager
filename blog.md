@@ -6,6 +6,7 @@
     - Tested the AWS Transcription with a lambda function
     - Added the lambda function code to the project directory
     - Each lambda function would be creating new job to the transcribe API and thus would never overload the Transcribe server.
+    - The transcribe API started the job when an audio file was uploaded to and ended when it stored the transcription back into the bucket.
 
 - May 10 2021 
     - Tried adding a database for the server to store some general information. The information is structured, currently only a video table is needed. SQL was chosen on because of easy availiblity on the AWS platform. AWS provides RDS and we can just choose the engine and the SQL server would be started. But for Mongo there were two options:
