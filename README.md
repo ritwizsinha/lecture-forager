@@ -10,7 +10,7 @@ Some resources to start the hack:
 - [AWS Architecture for Video Upload](https://aws.amazon.com/blogs/machine-learning/analyzing-contact-center-calls-part-1-use-amazon-transcribe-and-amazon-comprehend-to-analyze-customer-sentiment/)
 - [Chunking video for effecient send using HTTP]()
 - [Connecting AWS Transcribe with AWS and Lambda](https://towardsdatascience.com/speech-to-text-using-aws-transcribe-s3-and-lambda-a6e88fb3a48e)
-
+- [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 Good to have features:
 1. Integration with other services like teams, google meet, webex to directly stream the current video for transcribing.
 2. Partition the available video into chunks according to topics being discussed
