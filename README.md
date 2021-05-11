@@ -11,6 +11,7 @@ Some resources to start the hack:
 - [Chunking video for effecient send using HTTP]()
 - [Connecting AWS Transcribe with AWS and Lambda](https://towardsdatascience.com/speech-to-text-using-aws-transcribe-s3-and-lambda-a6e88fb3a48e)
 - [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
 Good to have features:
 1. Integration with other services like teams, google meet, webex to directly stream the current video for transcribing.
