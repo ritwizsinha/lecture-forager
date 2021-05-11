@@ -1,4 +1,4 @@
-# search-engine-classes
+# Lecture Forager
 A search engine used to index the class lectures uploaded to it and create a better way to study online
 
 
