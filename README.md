@@ -40,3 +40,6 @@ TECH STACK AND OTHERS:
 8. AWS APIS
 9. Docker
 10. Webpack
+11. Figma
+
+Figma Design Link - [Figma](https://www.figma.com/file/8GuB6KhRG1FmoFoTFN3DcE/Lecture-Forager?node-id=0%3A1) 
