@@ -11,10 +11,11 @@ function ButtonUI({
 }) {
     return (
         <div>
-            <button className="m-1 p-2 lf_button" style={{
+            <button className="m-1 p-1 lf_button" style={{
                 color: textColor,
                 background: backgroundColor,
-                width: width
+                width: width,
+                borderRadius: 5,
             }}>
                 {text}
             </button>

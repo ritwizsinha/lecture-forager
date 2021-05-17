@@ -1,0 +1,20 @@
+.lf_search {
+    font-family: 'poppins';
+    width: 80%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px
+}
+
+.lf_search-icon{
+   padding: 1px ;
+}
+
+.lf_search-icon button {
+    padding: 2px 10px;
+    background: transparent;
+    color: #fff;
+    border: none;
+}

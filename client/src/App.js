@@ -1,8 +1,15 @@
-import ButtonUI from './components/Button';
+import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-  return <ButtonUI text='Update' textColor='#fff' backgroundColor='#000' width='120px'/>
+  return (
+    <div style = {{
+      width: '100vw',
+      height:'100px'
+    }}>
+      <Header />
+     </div> 
+  )
 }
 
 export default App;

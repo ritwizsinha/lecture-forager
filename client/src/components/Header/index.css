@@ -1,0 +1,23 @@
+.lf_header-container {
+    font-family: 'poppins';
+    width: 100%;
+    height: 70px;
+    color: #fff;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1%;
+}
+
+.lf_header-logo {
+    font-family: 'poppins';
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.lf_search-container {
+    width: 85%;
+    align-items: flex-end;
+}
