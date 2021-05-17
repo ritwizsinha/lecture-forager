@@ -2,3 +2,4 @@
 /server/dist
 /server/.env
 /programmatic-user-aws.csv
+/client/node_modules
