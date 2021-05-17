@@ -1,0 +1,43 @@
+.lf_file_upload {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lf_upload_content {
+    margin: 20px;
+    height: 400px;
+    width: 400px;
+    background-color: #f3f1f1;
+    border-radius: 20px;
+    font-size: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lf_form_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px 0;
+    font-size: 20px;
+    font-family: 'poppins';
+}
+
+.lf_form_row > input {
+    margin: 0 30px;
+}
+
+.lf_form_content {
+    width: 100%;
+    font-family: 'poppins';
+}
+
+.lf_form_title {
+    font-family: 'poppins';
+    font-size: 30px;
+    margin: 30px 0;
+}

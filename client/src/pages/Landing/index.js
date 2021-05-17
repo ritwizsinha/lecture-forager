@@ -1,9 +1,8 @@
-import PageWrapper from '../PageWrapper';
 import './index.css';
 import OAuthButton from '../../components/OAuthButtons';
 
 export default function LandingPage() {
-    return <PageWrapper>
+    return (
         <div className="lf_main_container">
             <div className="lf_main_header">
                 <div className="lf_main_header_content">
@@ -22,7 +21,8 @@ export default function LandingPage() {
                 </div>
             </div>
         </div>
-    </PageWrapper>
+    )
+
 }
 
 
