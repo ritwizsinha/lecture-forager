@@ -12,6 +12,7 @@
     justify-content: center;
     position: relative;
 }
+
 .lf_main_header_content {
     font-family: 'poppins';
     font-size: 80px;
@@ -23,7 +24,6 @@
     transform: translate(-50%, -50%);
     margin: auto;
 }
-
 
 .lf_main_description {
     font-family: 'poppins';
