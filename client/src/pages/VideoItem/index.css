@@ -1,0 +1,14 @@
+.video_box{
+    display: inline-flex;
+    padding: 30px;
+}
+
+.image_body{
+    max-width: 200px;
+    max-height: 150px;
+    padding-right: 50px;
+}
+
+.video_content{
+    display: grid;
+}
