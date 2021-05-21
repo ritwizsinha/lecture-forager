@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LandingPage from './pages/Landing';
 import UploadPage from './pages/UploadPage';
+import VideoList from './pages/VideoList';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,6 +19,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/upload" exact component={UploadPage} />
+            <Route path="/video" exact component={VideoList} />
           </Switch>
         </div>
         <Footer />

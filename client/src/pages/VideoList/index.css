@@ -1,0 +1,10 @@
+.gif_loader{
+    margin: auto;
+    max-width: 150px;
+    padding-top : 15%;
+}
+
+.video_list{
+    display: grid;
+    padding: 50px;
+}
