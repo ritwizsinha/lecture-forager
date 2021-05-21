@@ -1,10 +1,18 @@
 const aws = require('aws-sdk');
-const 
+const Client = require('pg').Client;
 const transcribe = new aws.TranscribeService();
 const path = require('path');
 const LANGUAGE_CODE = 'en-US'
 const OUTPUT_BUCKET = 'lecture-forager';
-const folder = '/transcriptions';
+const folder = 'transcriptions/';
+
+const client = new Client({
+    user: 'lectureforager',
+    host: 'lectureforager.chkxp6opyrm4.ap-south-1.rds.amazonaws.com',
+    database: 'lectureforager',
+    password: 'lectureforager',
+    port: 5432,
+});
 
 exports.handler = (event, context) => {
     const eventRecord = event.Records && event.Records[0],
@@ -23,7 +31,10 @@ exports.handler = (event, context) => {
 
     const fileUri = `https://${inputBucket}.s3.amazonaws.com/${key}`,
     jobName = `s3-lambda-audio-transcribe-${id}`;
-
+    // const query = `UPDATE Videos
+    // SET transcription_filename = $1.json
+    // WHERE storage_id = $2`;
+    // await client.query(query, [jobName, key]);
     const params = {
         LanguageCode: LANGUAGE_CODE,
         Media: {

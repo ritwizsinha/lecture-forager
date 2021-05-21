@@ -12,6 +12,12 @@ Some resources to start the hack:
 - [Connecting AWS Transcribe with AWS and Lambda](https://towardsdatascience.com/speech-to-text-using-aws-transcribe-s3-and-lambda-a6e88fb3a48e)
 - [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+- [S3 Trigger for Lambda Function](https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html)
+
+FULL TEXT SEARCHES IN DATABASES ARTICLES
+- [Keyword search in Mongo](https://stories.mlh.io/full-text-search-in-minutes-with-mongodb-atlas-602f9e163ca6)
+- [Full Text Search in Mongo](https://code.tutsplus.com/tutorials/full-text-search-in-mongodb--cms-24835)
+- [Another FTS in Mongo](https://deniseyu.github.io/full-text-search-mongodb/)
 
 Good to have features:
 1. Integration with other services like teams, google meet, webex to directly stream the current video for transcribing.

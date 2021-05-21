@@ -17,3 +17,15 @@
     - The RDS Postgres Server was not accepting connections from my IP although the incoming connections was set to all allowed. This was because in the database I had to specify the IP of my machine according to this Stack Overflow [post](https://stackoverflow.com/questions/61062027/aws-rds-to-pgadmin-error-saving-properties-unable-to-connect-to-server-timeout). This would have to be changed when the server is deployed to EC2 server and set up an internal network.
     - Set up the Gitflow workflow
     - Started following Clean Architecture to ensure modularity of code.
+
+- May 17, 2021
+    - Finished the design for a basic low functionality page
+    - Started coding up react component for the main page
+    - Found out that npm install moves up from the main working directory to search for existing packages, when I tried doing npm install in the client directory, it threw an error that the dependency tree is unresolved as an older version of webpack was present in the parent directory. What I can conclude from this that we can have 2 folders each running separate projects and their common packages could be present in the parent directory.
+
+
+May 18, 2021
+    - There is an OutputKey field in the request job object for starting a 
+    transcription job. This takes in the folder in which you want to store.
+    [Link](https://docs.aws.amazon.com/transcribe/latest/dg/API_StartTranscriptionJob.html)
+    - Had to set up lambda to access the database because the lamdbda function had to store the transcription job name for later searching through the file created b
