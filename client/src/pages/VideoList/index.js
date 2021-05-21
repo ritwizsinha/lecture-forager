@@ -19,13 +19,13 @@ export default function VideoList() {
 
     const [data, setData] = useState([]);
 
-    let dummyData = [{ title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "1" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "2" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "3" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "4" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "5" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "6" },{ title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "7" },{ title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: [], id: "8" }];
+    let dummyData = [{ title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "1" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "2" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "3" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "4" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "5" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "6" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "7" }, { title: "I suck", image: "../../public/test.jpg", body: "Lol lol lollolollolloolol  lolololololo", tags: ["anime", "shonen", "heroes"], id: "8" }];
 
     useEffect(() => {
         // API call to get data
         setTimeout(() => {
             setData(dummyData);
-        }, 5000);
+        }, 2000);
     }, []);
 
     return (
