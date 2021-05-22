@@ -10,6 +10,6 @@
     "outDir": "./dist",
     "rootDir": "."
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "queues"],
   "exclude": ["node_modules"]
 }

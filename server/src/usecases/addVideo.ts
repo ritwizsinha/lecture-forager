@@ -4,10 +4,10 @@ import { Errors } from '../entities/error';
 
 export const makeAddVideo = (db) => {
     return async function addVideo(videoInfo): Promise<IResponse> {
-        const response = createNewVideo(videoInfo);;
+        const response = createNewVideo(videoInfo);
         if (response.error) return response;
         try {
-            const { rowCount } = db.insert(response.data);
+            const { rowCount } = await db.insert(response.data);
             if (rowCount < 1) return {
                 status: 'failure',
                 error: {
@@ -17,8 +17,8 @@ export const makeAddVideo = (db) => {
             }
             else {
                 return {
-                    status: 'success',
-                }
+                    ...response,
+                    status: 'success',                }
             }
         } catch (err) {
             return {

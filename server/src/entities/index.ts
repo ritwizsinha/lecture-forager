@@ -1,3 +1,6 @@
 import { buildEntityVideo } from './video';
+import { v4 as uuidv4 } from 'uuid';
 
-export const createNewVideo = buildEntityVideo((x: string) => x);
+
+const createId = (x: string) => uuidv4();
+export const createNewVideo = buildEntityVideo(createId);

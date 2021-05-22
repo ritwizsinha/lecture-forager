@@ -2,6 +2,7 @@
 import * as AWS from 'aws-sdk';
 import * as multer from "multer"
 import * as multerS3 from "multer-s3";
+import * as path from 'path';
 import { Request } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { AWS_ACCESS_ID, AWS_USER_SECRET_KEY, AWS_BUCKET_NAME } from '../constants/config';
@@ -40,16 +41,12 @@ export const handleUploadMiddleware = multer({
 export const handleLocalUploadMiddleWare = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, 'uploads/');
+            cb(null, path.join(__dirname, '../../uploads'));
         },
         filename: function (req, file, cb) {
-            const id = uuidv4();
-            const ext = file.originalname.split('.').pop();
-            const localFilename = `${id}.${ext}`;
-            req['localFileStoreId'] = id;
-            req['localFileStoreName'] = localFilename;
-            cb(null, localFilename);
+            const fileName = file.originalname;
+            req['fileName'] = fileName;
+            cb(null, fileName);
         },
-
     })
 })

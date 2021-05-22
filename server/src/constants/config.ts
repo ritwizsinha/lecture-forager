@@ -1,4 +1,6 @@
 import { config } from 'dotenv';
+import * as os from 'os';
+
 config();
 
 const PORT = process.env.PORT;
@@ -11,6 +13,9 @@ const PG_PASSWORD = process.env.RDS_PASSWORD;
 const PG_PORT = process.env.RDS_PORT;
 const PG_HOSTNAME = process.env.RDS_HOSTNAME;
 const PG_DATABASE = process.env.RDS_DB_NAME;
+const REDIS_PORT = process.env.REDIS_PORT;
+const REDIS_HOST = process.env.REDIS_HOST;
+const MAX_PARALLEL_PROCESS = os.cpus().length;
 
 export {
     PORT,
@@ -22,5 +27,8 @@ export {
     PG_USER,
     PG_PORT,
     PG_PASSWORD,
-    PG_DATABASE
+    PG_DATABASE,
+    REDIS_HOST,
+    REDIS_PORT,
+    MAX_PARALLEL_PROCESS
 }
