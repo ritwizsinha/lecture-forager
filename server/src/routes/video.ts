@@ -1,11 +1,11 @@
 import { Router, Request, Response } from 'express';
 const ffmpeg = require('ffmpeg');
-import { Client } from 'pg';
-import { handleUploadMiddleware, handleLocalUploadMiddleWare } from '../middleware/upload';
-import { VideoDB } from '../db/video';
-import { S3 } from '../middleware/upload';
-import { AWS_BUCKET_NAME } from '../constants/config';
+import { handleLocalUploadMiddleWare } from '../middleware/localUpload';
+import { addVideoToDb } from '../middleware/saveVideoToDb';
+import { addS3UploadJob } from '../middleware/addS3UploadJob';
 import * as fs from 'fs';
+import * as path from 'path';
+
 
 export const router = Router();
 router.get('/video', (req, res) => {
@@ -18,72 +18,64 @@ router.get('/video/multiple', (req, res) => {
 });
 
 
-router.post('/video', handleLocalUploadMiddleWare.single('file'), async (req, res) => {
-    const { title, description } = req.body;
-    const { localFileStoreId, localFileStoreName } = req as any;
-    await VideoDB.insert({
-        id: localFileStoreId,
-        title,
-        description,
-        filename: localFileStoreName
-    });
-    await audioconverter(localFileStoreName);
-    S3VideoUploader(`${localFileStoreName}`);
-    return res.status(200).json();
+router.post('/upload', handleLocalUploadMiddleWare.single('file'), addVideoToDb, addS3UploadJob, async (req, res) => {
+    const data = req['response'];
+    // console.log(fs.existsSync(path.join(__dirname, `../../uploads/${data.fileName}`)))
+    return res.status(201).json(data);
 });
 
-async function audioconverter(filename) {
-    const path = `uploads/${filename}`;
-    try {
-        const process = new ffmpeg(path);
-        process.then(function (video) {
-            video.fnExtractSoundToMP3(`./${filename}.mp3`, function (error, file) {
-                if (!error)
-                    console.log('Audio file: ' + file);
-                S3Audiouploader(`${filename}.mp3`);
-            });
-        }, function (err) {
-            console.log('Error: ' + err);
-        });
-    } catch (e) {
-        console.log(e);
-        console.log(e.code);
-        console.log(e.msg);
-    }
-}
+// async function audioconverter(filename) {
+//     const path = `uploads/${filename}`;
+//     try {
+//         const process = new ffmpeg(path);
+//         process.then(function (video) {
+//             video.fnExtractSoundToMP3(`./${filename}.mp3`, function (error, file) {
+//                 if (!error)
+//                     console.log('Audio file: ' + file);
+//                 S3Audiouploader(`${filename}.mp3`);
+//             });
+//         }, function (err) {
+//             console.log('Error: ' + err);
+//         });
+//     } catch (e) {
+//         console.log(e);
+//         console.log(e.code);
+//         console.log(e.msg);
+//     }
+// }
 
-function S3Audiouploader(filename) {
-    console.log(filename);
-    const fileContent = fs.readFileSync(filename);
-    const params = {
-        Bucket: AWS_BUCKET_NAME,
-        Key: `audios/${filename}`,
-        Body: fileContent
-    }
+// function S3Audiouploader(filename) {
+//     console.log(filename);
+//     const fileContent = fs.readFileSync(filename);
+//     const params = {
+//         Bucket: AWS_BUCKET_NAME,
+//         Key: `audios/${filename}`,
+//         Body: fileContent
+//     }
 
-    S3.upload(params, function(err, data) {
-        if (err) {
-            throw err
-        }
+    // S3.upload(params, function(err, data) {
+    //     if (err) {
+    //         throw err
+    //     }
 
-        console.log('Audio uploaded successfully');
-    })
-    console.log(params);
-}
+    //     console.log('Audio uploaded successfully');
+    // })
+//     console.log(params);
+// }
 
-function S3VideoUploader(filename) {
-    const fileContent = fs.readFileSync(`uploads/${filename}`);
-    const params = {
-        Bucket: AWS_BUCKET_NAME,
-        Key: `videos/${filename}`,
-        Body: fileContent
-    }
-    console.log(params);
-    S3.upload(params, function(err, data) {
-        if (err) {
-            throw err
-        }
+// function S3VideoUploader(filename) {
+//     const fileContent = fs.readFileSync(`uploads/${filename}`);
+//     const params = {
+//         Bucket: AWS_BUCKET_NAME,
+//         Key: `videos/${filename}`,
+//         Body: fileContent
+//     }
+//     console.log(params);
+//     S3.upload(params, function(err, data) {
+//         if (err) {
+//             throw err
+//         }
 
-        console.log('Video uploaded successfully');
-    })
-}
+//         console.log('Video uploaded successfully');
+//     })
+// }

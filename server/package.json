@@ -16,14 +16,17 @@
   "devDependencies": {
     "@types/aws-sdk": "^2.7.0",
     "@types/bull": "^3.15.1",
+    "@types/bull-board": "^0.6.0",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.11",
     "@types/multer": "^1.4.5",
     "@types/multer-s3": "^2.7.9",
     "@types/node": "^15.0.2",
     "@types/pg": "^7.14.11",
+    "@types/uuid": "^8.3.0",
     "@types/webpack": "^5.28.0",
     "@webpack-cli/generators": "^2.1.0",
+    "bull-board": "^2.1.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^8.1.1",
     "declaration-bundler-webpack-plugin": "^1.0.3",
@@ -46,6 +49,7 @@
     "keyword-extractor": "0.0.19",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "uuid": "^8.3.2"
   }
 }

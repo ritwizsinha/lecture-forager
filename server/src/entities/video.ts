@@ -8,7 +8,7 @@ export interface IVideo {
     comprehension_id: string,
     title: string;
     description: string;
-    filename: string;
+    fileName: string;
     postedAt: Date;
     postedBy: string;
 }
@@ -18,15 +18,15 @@ export interface IResponse {
     status: 'success' | 'failure' | 'waiting'
 }
 
-export const buildEntityVideo = (createFileStorageId: (x: string) => string) => {
+export const buildEntityVideo = (createFileId: (x: string) => string) => {
     return (data: Partial<IVideo>): IResponse => {
-        let { filename, title, description } = data;
+        let { fileName, title, description } = data;
         let message = '';
-        filename = filename.trim();
+        fileName = fileName.trim();
         title = title.trim();
         description = description.trim();
 
-        if (!filename) message = 'Filename cannot be empty';
+        if (!fileName) message = 'fileName cannot be empty';
         if (!title) message = 'Title cannot be empty';
         if (!description) message = 'Description cannot be empty'
 
@@ -38,13 +38,13 @@ export const buildEntityVideo = (createFileStorageId: (x: string) => string) => 
             }
         }
 
-        const fileStorageId = createFileStorageId(filename);
+        const id = createFileId(fileName);
 
         return {
             status: 'success',
             data: {
-                fileStorageId,
-                filename,
+                id,
+                fileName,
                 title,
                 description,
             }
