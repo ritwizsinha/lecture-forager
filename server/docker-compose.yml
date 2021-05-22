@@ -1,11 +1,27 @@
 version: '2'
 services:
-    database:
+    database-viewer:
         image: "dpage/pgadmin4"
         ports:
             - "8000:80"
         environment:
             - PGADMIN_DEFAULT_EMAIL=ritwizsinha0@gmail.com
             - PGADMIN_DEFAULT_PASSWORD=postgres
-
-        
+    db:
+        container_name: "pgdb"
+        restart: always
+        image: "postgres"
+        ports:
+            - "5432:5432"
+        environment: 
+            POSTGRES_USER: lectureforager
+            POSTGRES_PASSWORD: lectureforager
+            POSTGRES_DB: lectureforager
+        volumes: 
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    redis:
+        container_name: queueStore
+        restart: always
+        image: redis
+        ports: 
+            - "8001:6379"
