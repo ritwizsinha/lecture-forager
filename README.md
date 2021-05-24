@@ -18,6 +18,7 @@ FULL TEXT SEARCHES IN DATABASES ARTICLES
 - [Keyword search in Mongo](https://stories.mlh.io/full-text-search-in-minutes-with-mongodb-atlas-602f9e163ca6)
 - [Full Text Search in Mongo](https://code.tutsplus.com/tutorials/full-text-search-in-mongodb--cms-24835)
 - [Another FTS in Mongo](https://deniseyu.github.io/full-text-search-mongodb/)
+- [FTS in Postgres](https://alibaba-cloud.medium.com/using-postgresql-to-create-an-efficient-search-engine-d0ab8e11b7)
 
 Good to have features:
 1. Integration with other services like teams, google meet, webex to directly stream the current video for transcribing.
