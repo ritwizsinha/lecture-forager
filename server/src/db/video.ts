@@ -1,5 +1,4 @@
 import { DBWrapper } from './db';
-
 export interface IVideo {
     storage_id: string;
     title: string;
@@ -20,6 +19,16 @@ class VideoTable extends DBWrapper {
         return DBWrapper.pool.query(query, [id, title, description, fileName]);
     }
 
+    async mockInsert({
+        title,
+        description,
+        fileName,
+        keywords
+    }) {
+        const query = `INSERT INTO ${this.tablename} (title, description, filename, keywords)
+        VALUES ($1, $2, $3, $4)`;
+        return DBWrapper.pool.query(query, [title, description, fileName, keywords]);
+    }
     async getAll() {
         const query = `SELECT * FROM ${this.tablename}`;
         return DBWrapper.pool.query(query);
