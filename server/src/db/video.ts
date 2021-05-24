@@ -29,6 +29,17 @@ class VideoTable extends DBWrapper {
         VALUES ($1, $2, $3, $4)`;
         return DBWrapper.pool.query(query, [title, description, fileName, keywords]);
     }
+
+    async getVideosMetadataMatchingSearch(searchText) {
+        const query = `
+        SELECT (id, title, description, storage_id, keywords)
+        FROM videos
+        WHERE document_with_weights @@ to_tsquery('english', coalesce($1, ''))
+        ORDER BY ts_rank(document_with_weights, to_tsquery('english', coalesce($1, ''))) DESC;`
+
+        return DBWrapper.pool.query(query, [searchText]);
+    }
+     
     async getAll() {
         const query = `SELECT * FROM ${this.tablename}`;
         return DBWrapper.pool.query(query);
