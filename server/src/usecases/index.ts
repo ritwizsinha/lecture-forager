@@ -3,6 +3,7 @@ import { uploadVideoToSource } from './uploadVideoToSource';
 import { convertVideoToAudio } from './convertVideoToAudio';
 import { downloadVideoTranscript } from './downloadVideoTranscript'; 
 import { convertTranscriptToKeywords } from './convertTranscriptToKeyword';
+import { makeSearchVideos } from './searchVideos';
 
 import { VideoDB } from '../db/video';
 import { S3Uploader } from '../uploader/AWSUploader';
@@ -15,3 +16,4 @@ export const uploadVideoToS3 = uploadVideoToSource(S3Uploader);
 export const videoToAudioConverter = convertVideoToAudio(VideoConverter);
 export const downloadS3VideoTranscript = downloadVideoTranscript(S3Downloader);
 export const npmConvertTranscriptToKeywords = convertTranscriptToKeywords(npmKeywordExtractor);
+export const searchVideos = makeSearchVideos(VideoDB);

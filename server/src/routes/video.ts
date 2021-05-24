@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
-const ffmpeg = require('ffmpeg');
 import { handleLocalUploadMiddleWare } from '../middleware/localUpload';
 import { addVideoToDb } from '../middleware/saveVideoToDb';
 import { addToJobQueue } from '../middleware/addS3UploadJob';
+import { getVideoListFromSearch } from '../middleware/getVideoListFromSearch';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -13,12 +13,15 @@ router.get('/video', (req, res) => {
     // Return Video name thumbnail and other properties
 });
 
-router.get('/video/multiple', (req, res) => {
+router.get('/video/multiple', getVideoListFromSearch, (req, res) => {
     // Return Video Metadata for the list of videos specified
+    // const { search } = req.params;
+    const response = req['response'];
+    return res.status(200).json(response);
 });
 
 
-router.post('/upload', handleLocalUploadMiddleWare.single('file'), addVideoToDb, addToJobQueue, async (req, res) => {
+router.post('/video', handleLocalUploadMiddleWare.single('file'), addVideoToDb, addToJobQueue, async (req, res) => {
     const data = req['response'];
     // console.log(fs.existsSync(path.join(__dirname, `../../uploads/${data.fileName}`)))
     return res.status(201).json(data);

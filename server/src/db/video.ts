@@ -32,10 +32,10 @@ class VideoTable extends DBWrapper {
 
     async getVideosMetadataMatchingSearch(searchText) {
         const query = `
-        SELECT (id, title, description, storage_id, keywords)
+        SELECT id, title, description, storage_id, keywords
         FROM videos
-        WHERE document_with_weights @@ to_tsquery('english', coalesce($1, ''))
-        ORDER BY ts_rank(document_with_weights, to_tsquery('english', coalesce($1, ''))) DESC;`
+        WHERE document_with_weights @@ plainto_tsquery('english', coalesce($1, ''))
+        ORDER BY ts_rank(document_with_weights, plainto_tsquery('english', coalesce($1, ''))) DESC;`
 
         return DBWrapper.pool.query(query, [searchText]);
     }
