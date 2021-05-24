@@ -33,6 +33,3 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
     ON videos FOR EACH ROW EXECUTE PROCEDURE videos_tsvector_trigger()
-
-select *
-from videos;
