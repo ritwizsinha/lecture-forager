@@ -1,5 +1,4 @@
-DROP TABLE videos;
-CREATE TABLE videos (
+CREATE TABLE IF NOT EXISTS videos (
     id SERIAL PRIMARY KEY,
     filename varchar NOT NULL ,
     storage_id varchar UNIQUE ,
@@ -11,6 +10,7 @@ CREATE TABLE videos (
     document_with_weights tsvector
 );
 
+
 CREATE INDEX storage_id_idx
 ON videos(storage_id);
 
@@ -18,7 +18,8 @@ CREATE INDEX audio_id_idx
 ON videos(audio_id);
 
 CREATE INDEX document_idx_weights
-ON videos(document_with_weights);
+ON videos
+USING GIN (document_with_weights);
 
 CREATE FUNCTION videos_tsvector_trigger() RETURNS TRIGGER AS $$
 begin
@@ -32,3 +33,6 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
     ON videos FOR EACH ROW EXECUTE PROCEDURE videos_tsvector_trigger()
+
+select *
+from videos;
