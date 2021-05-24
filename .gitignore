@@ -3,4 +3,4 @@
 /programmatic-user-aws.csv
 /client/node_modules
 /server/src/lambdas/transcribe-job/node_modules/
-server/.*
+server/.env
