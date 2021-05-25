@@ -1,4 +1,4 @@
-import { Uploader } from '../uploader/contract';
+import { Uploader } from '../interfaces/uploader/contract';
 
 export function uploadVideoToSource (uploader: Uploader) {
     return  async (path, key) => {

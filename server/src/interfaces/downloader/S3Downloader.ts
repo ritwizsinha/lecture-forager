@@ -1,5 +1,5 @@
-import { s3 } from '../constants/awsInit';
-import { AWS_BUCKET_NAME } from '../constants/config';
+import { s3 } from '../../constants/awsInit';
+import { AWS_BUCKET_NAME } from '../../constants/config';
 import { Downloader } from './contract';
 
 export const S3Downloader: Downloader = {

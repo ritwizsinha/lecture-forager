@@ -1,4 +1,4 @@
-import { Downloader } from '../downloader/contract';
+import { Downloader } from '../interfaces/downloader/contract';
 
 export function downloadVideoTranscript(downloader: Downloader) {
     return  async (id: string) : Promise<string> => {

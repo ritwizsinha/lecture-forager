@@ -4,6 +4,7 @@ import * as path from 'path';
 import videoConverter from './workers/videoConverter';
 import videoUploader from './workers/videoUpload';
 import audioUploader from './workers/audioUpload';
+import thumbnailCreator from './workers/thumbnailCreator';
 
 const connectionOpts = {
     host: REDIS_HOST,
@@ -33,9 +34,17 @@ const S3AudioUploadQueue = new Bull('S3AudioUploadQueue', {
 
 S3AudioUploadQueue.process(MAX_PARALLEL_PROCESS, audioUploader);
 
+const VideoThumbnailQueue = new Bull('VideoThumbnailQueue', {
+    redis: {
+        ...connectionOpts
+    }
+})
+
+VideoThumbnailQueue.process(MAX_PARALLEL_PROCESS, thumbnailCreator);
 
 export {
     S3VideoUploadQueue,
     S3AudioUploadQueue,
-    videoToAudioConversionQueue
+    videoToAudioConversionQueue,
+    VideoThumbnailQueue
 }

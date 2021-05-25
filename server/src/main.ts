@@ -5,7 +5,7 @@ import { PORT } from './constants/config';
 import { router } from './routes/video';
 import { bullRouter } from './queues/bullboard';
 import { npmConvertTranscriptToKeywords } from './usecases';
-import { VideoDB }  from './db/video';
+import { VideoDB }  from './interfaces/db/video';
 
 const app = express();
 app.use(express.json());
