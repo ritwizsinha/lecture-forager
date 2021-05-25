@@ -1,5 +1,5 @@
-import { AWS_BUCKET_NAME } from '../constants/config';
-import { s3 } from '../constants/awsInit';
+import { AWS_BUCKET_NAME } from '../../constants/config';
+import { s3 } from '../../constants/awsInit';
 import { Uploader } from './contract';
 import * as fs from 'fs';
 

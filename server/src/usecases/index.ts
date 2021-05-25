@@ -5,11 +5,11 @@ import { downloadVideoTranscript } from './downloadVideoTranscript';
 import { convertTranscriptToKeywords } from './convertTranscriptToKeyword';
 import { makeSearchVideos } from './searchVideos';
 
-import { VideoDB } from '../db/video';
-import { S3Uploader } from '../uploader/AWSUploader';
-import { VideoConverter } from '../converter/VideoConverter';
-import { S3Downloader } from '../downloader/S3Downloader';
-import { npmKeywordExtractor } from '../keywordExtractor/npm-keyword-extractor';
+import { VideoDB } from '../interfaces/db/video';
+import { S3Uploader } from '../interfaces/uploader/AWSUploader';
+import { VideoConverter } from '../interfaces/converter/VideoConverter';
+import { S3Downloader } from '../interfaces/downloader/S3Downloader';
+import { npmKeywordExtractor } from '../interfaces/keywordExtractor/npm-keyword-extractor';
 
 export const addVideo = makeAddVideo(VideoDB);
 export const uploadVideoToS3 = uploadVideoToSource(S3Uploader);

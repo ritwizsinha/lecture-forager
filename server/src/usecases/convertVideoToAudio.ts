@@ -1,4 +1,4 @@
-import { Converter } from "../converter/contract";
+import { Converter } from "../interfaces/converter/contract";
 import * as path from 'path';
 
 export const convertVideoToAudio = (converter: Converter) => {

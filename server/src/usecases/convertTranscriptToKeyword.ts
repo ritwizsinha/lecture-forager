@@ -1,4 +1,4 @@
-import { KeyWordExtractor } from '../keywordExtractor/contract';
+import { KeyWordExtractor } from '../interfaces/keywordExtractor/contract';
 
 export function convertTranscriptToKeywords(extractor: KeyWordExtractor) {
     return (document: string) : Array<string> => {

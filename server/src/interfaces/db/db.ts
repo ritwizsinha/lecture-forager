@@ -1,5 +1,5 @@
 import { Pool, Client } from 'pg';
-import { PG_HOSTNAME, PG_PASSWORD, PG_PORT, PG_USER, PG_DATABASE } from '../constants/config';
+import { PG_HOSTNAME, PG_PASSWORD, PG_PORT, PG_USER, PG_DATABASE } from '../../constants/config';
 
 
 export class DBWrapper {
