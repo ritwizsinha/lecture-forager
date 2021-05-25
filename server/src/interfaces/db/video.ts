@@ -19,6 +19,26 @@ class VideoTable extends DBWrapper {
         return DBWrapper.pool.query(query, [id, title, description, fileName]);
     }
 
+    async updateStorageId({
+        id,
+        storage_id
+    }) {
+        const query = `UPDATE ${this.tablename}
+        SET storage_id = $1
+        WHERE id = $2`;
+        return DBWrapper.pool.query(query, [storage_id, id]);
+    }
+
+    async updateAudioId({
+        id,
+        audio_id
+    }) {
+        const query = `UPDATE ${this.tablename}
+        SET audio_id = $1
+        WHERE id = $2`;
+        return DBWrapper.pool.query(query, [audio_id, id]);
+    }
+
     async mockInsert({
         title,
         description,
@@ -32,7 +52,7 @@ class VideoTable extends DBWrapper {
 
     async getVideosMetadataMatchingSearch(searchText) {
         const query = `
-        SELECT id, title, description, storage_id, keywords
+        SELECT id, title, description, filename, keywords
         FROM videos
         WHERE document_with_weights @@ plainto_tsquery('english', coalesce($1, ''))
         ORDER BY ts_rank(document_with_weights, plainto_tsquery('english', coalesce($1, ''))) DESC;`
