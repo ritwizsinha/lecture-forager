@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import ButtonUI from '../Button';
 import SearchBar from '../SearchBar';
@@ -6,20 +7,31 @@ import './index.css';
 
 function Header() {
     return (
-        <div className = "lf_header-container">
+        <div className="lf_header-container">
             <div className="lf_header-logo">
-                LF
+                <Link
+                    to={{
+                        pathname: '/',
+                    }}
+                >
+                    LF
+                </Link>
             </div>
             <div className="lf_search-container">
                 <SearchBar />
             </div>
             <div className="lf_buttons-container">
-                <ButtonUI
-                    backgroundColor="#fff"
-                    text="Upload"
-                    textColor="#000"
-                    width="120px"
-                />
+                <Link to={{
+                    pathname: '/upload'
+                }}>
+                    <ButtonUI
+                        backgroundColor="#fff"
+                        text="Upload"
+                        textColor="#000"
+                        width="100px"
+                    />
+                </Link>
+
             </div>
         </div>
     )

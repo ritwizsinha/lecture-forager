@@ -44,3 +44,19 @@
 .github_login_btn {
 
 }
+
+@media (max-width: 500px) {
+
+    .lf_main_header {
+        height: 200px;
+    }
+    .lf_main_header_content {
+        font-size: 40px;
+        letter-spacing: 15px;
+    }
+
+    .lf_main_description {
+        font-size: 20px;
+        text-align: center;
+    }
+}

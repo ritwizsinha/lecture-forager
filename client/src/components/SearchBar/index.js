@@ -6,7 +6,7 @@ function SearchBar() {
     return (
         <div className="lf_search">
             <div className="input-group">
-                <input type="text" className="form-control" placeholder="Search for Topic" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                <input type="text" className="form-control" placeholder="Search for Topic"/>
                 <div className="lf_search-icon">
                     <button type="submit"><Search /></button>
                 </div>

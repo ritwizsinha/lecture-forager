@@ -14,3 +14,9 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media (max-width: 500px) {
+    .github_oauth_btn {
+        padding: 10px 20px;
+    }
+}
