@@ -27,13 +27,10 @@ function UploadPage() {
         }
         const fileUploadHandler = async () => {
                 const data = new FormData();
-                console.log(file, title, description, file.name);
                 data.append('file', file)
                 data.append('title', title);
                 data.append('description', description);
                 data.append('fileName', file.name)
-                console.log(data);
-                console.log(SERVER_HOST);
                 try {
                         setPageState('submitted');
                         await axios.post(`${SERVER_HOST}/video`, data);
