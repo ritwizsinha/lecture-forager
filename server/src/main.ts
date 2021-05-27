@@ -1,14 +1,14 @@
 import * as express from 'express';
-import * as fs from 'fs';
-import * as csv from 'csv-parser';
+import * as cors from 'cors';
+import * as path from 'path';
 import { PORT } from './constants/config';
 import { router } from './routes/video';
 import { bullRouter } from './queues/bullboard';
-import { npmConvertTranscriptToKeywords } from './usecases';
-import { VideoDB }  from './interfaces/db/video';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+app.use('/static', express.static(path.join(__dirname, '../thumbnails')));
 app.use(express.urlencoded({
   extended: true
 }));

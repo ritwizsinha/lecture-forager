@@ -11,7 +11,6 @@ export const makeSearchVideos = (db) => {
                 }
             }
             const { rows } = await db.getVideosMetadataMatchingSearch(search);
-            console.log(rows);
             return {
                 status: 'success',
                 data: {
