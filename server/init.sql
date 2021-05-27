@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS videos (
-    id SERIAL PRIMARY KEY,
+    id  varchar PRIMARY KEY,
     filename varchar NOT NULL ,
     storage_id varchar UNIQUE ,
     audio_id varchar UNIQUE ,

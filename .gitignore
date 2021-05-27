@@ -4,3 +4,4 @@
 /client/node_modules
 /server/src/lambdas/transcribe-job/node_modules/
 server/.env
+/videos

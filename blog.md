@@ -24,7 +24,7 @@
     - Found out that npm install moves up from the main working directory to search for existing packages, when I tried doing npm install in the client directory, it threw an error that the dependency tree is unresolved as an older version of webpack was present in the parent directory. What I can conclude from this that we can have 2 folders each running separate projects and their common packages could be present in the parent directory.
 
 
-May 18, 2021
+- May 18, 2021
     - There is an OutputKey field in the request job object for starting a 
     transcription job. This takes in the folder in which you want to store.
     [Link](https://docs.aws.amazon.com/transcribe/latest/dg/API_StartTranscriptionJob.html)
