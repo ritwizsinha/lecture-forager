@@ -5,7 +5,11 @@ import ButtonUI from '../Button';
 import SearchBar from '../SearchBar';
 import './index.css';
 
-function Header() {
+function Header({
+    searchTerm,
+    setSearchTerm,
+    startSearch
+}) {
     return (
         <div className="lf_header-container">
             <div className="lf_header-logo">
@@ -18,7 +22,7 @@ function Header() {
                 </Link>
             </div>
             <div className="lf_search-container">
-                <SearchBar />
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} startSearch={startSearch}/>
             </div>
             <div className="lf_buttons-container">
                 <Link to={{
