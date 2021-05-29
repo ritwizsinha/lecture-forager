@@ -15,7 +15,7 @@ router.get('/video',getVideoInfoAndTransript, getTranscriptionWithTimestamps, cl
     // Return Video name thumbnail and other properties
     const data = req['video-data'];
     console.log(data);
-    return res.status(500).json(data);
+    return res.status(200).json(data);
 });
 
 router.get('/video/multiple', getVideoListFromSearch, (req, res) => {
