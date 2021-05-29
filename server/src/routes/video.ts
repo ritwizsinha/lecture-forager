@@ -3,14 +3,19 @@ import { handleLocalUploadMiddleWare } from '../middleware/localUpload';
 import { addVideoToDb } from '../middleware/saveVideoToDb';
 import { addToJobQueue } from '../middleware/addS3UploadJob';
 import { getVideoListFromSearch } from '../middleware/getVideoListFromSearch';
+import { getVideoInfoAndTransript } from '../middleware/getVideoInfoAndTranscript';
+import { getTranscriptionWithTimestamps } from '../middleware/getTranscriptionFile';
+import { cleanTranscription } from '../middleware/cleanTranscription';
 import * as fs from 'fs';
 import * as path from 'path';
 
 
 export const router = Router();
-router.get('/video', (req, res) => {
-    const { id } = req.params;
+router.get('/video',getVideoInfoAndTransript, getTranscriptionWithTimestamps, cleanTranscription, (req, res) => {
     // Return Video name thumbnail and other properties
+    const data = req['video-data'];
+    console.log(data);
+    return res.status(500).json(data);
 });
 
 router.get('/video/multiple', getVideoListFromSearch, (req, res) => {
