@@ -1,12 +1,13 @@
-import axios from 'axios';
 import React from 'react';
 import Badge from 'react-bootstrap/Badge'
+import { Link } from 'react-router-dom';
 import { SERVER_HOST } from '../../constants';
 import './index.css';
 
 
 function Tags(props) {
-    const tagList = props.tags.map((tag) => {
+    const tags = props.tags.split(',');
+    const tagList = tags.slice(0, Math.min(tags.length, 40)).map((tag) => {
         return <Badge pill variant="dark">
             {tag}
         </Badge>
@@ -16,17 +17,26 @@ function Tags(props) {
     )
 }
 
-export default function VideoItem({ videoMeta }) {
+export default function VideoItem({ videoMeta, searchTerm }) {
+    console.log("Inside item video", searchTerm);
     const { title, description, keywords, filename } = videoMeta;
     return (
         <div className="video_box">
             <div>
-                <img src={`${SERVER_HOST}/static/${filename.slice(0, filename.lastIndexOf('.'))}/tn.png`} onError={() => {this.src = './preloader.gif'}} alt="" className="image_body" />
+                <Link to = {{
+                    pathname: '/videoPlayer',
+                    state: {
+                        ...videoMeta,
+                        searchTerm
+                    }
+                }}>
+                    <img src={`${SERVER_HOST}/static/${filename.slice(0, filename.lastIndexOf('.'))}/tn.png`} onError={() => { this.src = './preloader.gif' }} alt="" className="image_body" />
+                </Link>
             </div>
             <div className="video_content">
-                <span className="video_heading">{title}</span>
-                <span className="video_body">{description}</span>
-                <span className="video_tags"><Tags tags={keywords ?? []} /> </span>
+                <div className="video_heading">{title}</div>
+                <div className="video_body">{description}</div>
+                <div className="video_tags"><Tags tags={keywords ?? []} /> </div>
             </div>
         </div>
     )

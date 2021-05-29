@@ -2,6 +2,8 @@ import Header from './components/Header';
 import LandingPage from './pages/Landing';
 import UploadPage from './pages/UploadPage';
 import VideoList from './pages/VideoList';
+import VideoPlayerTab from "./components/VideoPlayerTab/test.js";
+import VideoPlayer from "./pages/VideoPlayer";
 import { SERVER_HOST } from './constants';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -19,37 +21,29 @@ const App = () => {
     if (newSearchTerm.length === 0) setSearchStarted(false);
     setSearchTerm(newSearchTerm);
   }
-  const startSearch = async () => {
-    setSearchStarted(true);
-    try {
-      const response = await axios.get(`${SERVER_HOST}/video/multiple`, {
-        params: {
-          search: searchTerm
-        },
-      });
-      setVideoList(response.data.videos);
-    } catch (err) {
-      console.log(err);
-    }
-
-  }
   return (
     <Router>
       <div>
-        <Header searchTerm={searchTerm} setSearchTerm={searchTermChange} startSearch={startSearch} />
-        <div className="container" style={{
-          marginTop: '100px'
-        }}>
+        <Header searchTerm={searchTerm} searchT/>
+        <div
+          className="container-fluid"
+          style={{
+            minHeight: "100vh",
+            marginTop: "80px",
+          }}
+        >
           <NotificationContainer />
-          {searchStarted && <VideoList videoList={videoList ?? []}/>}
-          {!searchStarted && (<Switch>
+          <Switch>
             <Route path="/" exact component={LandingPage} />
+            <Route path="/list" exact component={VideoList} />
             <Route path="/upload" exact component={UploadPage} />
-          </Switch>)}
+            <Route path="/video" exact component={VideoList} />
+            <Route path="/videoplayer" exact component={VideoPlayer} />
+          </Switch>
         </div>
       </div>
     </Router>
-  )
-}
+  );
+};
 
 export default App;

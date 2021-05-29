@@ -1,0 +1,21 @@
+.video_player_box {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+}
+
+.video_player_tab{
+    height: 100%;
+    width:65%;
+    margin-right: 30px;
+}
+
+.text_tab{
+    height: 100%;
+    width:35%;
+    overflow-y: scroll;
+}
+
+span {
+    display: inline-block;
+}

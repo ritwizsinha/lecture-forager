@@ -1,0 +1,45 @@
+.control_bar {
+  width: 100%;
+  height: 9%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  flex: 1;
+}
+.control_bar_item{
+    margin:5px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    text-align: center;
+}
+.control_bar_item:hover {
+    cursor: pointer;
+}
+
+
+.lf_video_play {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_video {
+  flex: 3
+}
+
+.lf_title {
+  font-size: 30px;
+  font-family: 'poppins';
+  letter-spacing: 2px;
+  padding: 10px 0;
+}
+
+.lf_description {
+  font-size: 20px;
+  font-family: 'poppins';
+  margin: 10px 0;
+
+}
