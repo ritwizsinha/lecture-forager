@@ -15,3 +15,7 @@
     width:35%;
     overflow-y: scroll;
 }
+
+span {
+    display: inline-block;
+}

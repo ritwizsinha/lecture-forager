@@ -1,45 +1,57 @@
 import React, { useState, useEffect, createRef } from "react";
+import axios from 'axios';
 import Loader from "react-loader-spinner";
 import VideoPlayerTab from "../../components/VideoPlayerTab/test.js";
 import "./index.css";
+import { SERVER_HOST } from '../../constants';
 
-import transcript_data from "./transcription.json";
 import TextTracks from "../../components/TextTracks";
-
-function transform(data) {
-  let transformed_data = [],
-    count = 0;
-
-  for (var i = 0; i < data.length; i++) {
-    if (data[i].hasOwnProperty("start_time")) {
-      transformed_data.push({
-        start_time: data[i].start_time,
-        value: data[i].alternatives[0].content,
-      });
-      count++;
-    } else {
-      if (count !== 0) {
-        transformed_data[count - 1].value += data[i].alternatives[0].content;
-      }
-    }
-  }
-  return transformed_data;
-}
-
-export default function VideoPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function VideoPlayerData({ location: { state } }) {
+  console.log(state);
+  const [loadingOrError, setLoadingOrError] = useState(true);
+  const [text, setText] = useState('');
   const [transcriptData, setTranscriptData] = useState([]);
-  const [timer, setTimer] = useState(0);
-
-  let refToChild = createRef();
 
   useEffect(() => {
-    setTranscriptData([...transform(transcript_data.results.items)]);
+    const f = async () => {
+      const { filename, id } = state;
+      try {
+        const response = await axios.get(`${SERVER_HOST}/video`, {
+          params: {
+            filename,
+            id
+          }
+        });
+        setLoadingOrError(false);
+        setText(response.data.text);
+        setTranscriptData(response.data.timestamps);
+        console.log(response.data)
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+
+    f();
   }, []);
+
+  if (!transcriptData.length) {
+    return (<div className="gif_loader">
+      <Loader type="Circles" color="#00BFFF" height={100} width={100} />
+    </div>)
+  } else {
+    return <VideoPlayer transcriptData={transcriptData} text={text} title={state.title} description={state.description}  keywords={state.keywords} searchTerm={state.searchTerm}/>
+  }
+}
+function VideoPlayer({ transcriptData, text, title, description, keywords, searchTerm }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [timer, setTimer] = useState(0);
+  console.log(searchTerm);
+  let refToChild = createRef();
 
   function highlightText(currentTime) {
     transcriptData.forEach((item, i) => {
-      if (item.start_time < currentTime || item.start_time > currentTime + 5) {
+      if (item.startTime < currentTime || item.startTime > currentTime + 5) {
         document.getElementsByClassName(
           i.toString() + "_class_id"
         )[0].style.backgroundColor = "white";
@@ -63,7 +75,6 @@ export default function VideoPlayer() {
   }, 5000);
 
   function changeStatus(currentTime, toChange) {
-    console.log(currentTime, toChange);
     if (toChange) {
       setIsPlaying((prevState) => {
         return !prevState;
@@ -72,25 +83,22 @@ export default function VideoPlayer() {
     setTimer(currentTime);
   }
 
-  const searchWords = ["the", "a", "an", "in", "at", "of"];
-  const videoInformation = {
-    title: "I suck",
-    image: "../../public/test.jpg",
-    body: "Lol lol lollolollolloolol  lolololololo",
-    tags: ["anime", "shonen", "heroes"],
-    id: "8",
-  };
-
   return (
     <div className="video_player_box">
       <div className="video_player_tab">
-        <VideoPlayerTab
+         <VideoPlayerTab
           changeStatus={changeStatus}
           ref={refToChild}
           data={transcriptData}
-          videoInformation={videoInformation}
-          keyword={searchWords}
-        />
+          videoInformation={{
+            title,
+            body: description,
+            tags: keywords.split(',')
+          }}
+          title={title}
+          description={description}
+          keyword={searchTerm.split(' ')}
+        /> 
       </div>
       <div className="text_tab">
         {!transcriptData.length && (

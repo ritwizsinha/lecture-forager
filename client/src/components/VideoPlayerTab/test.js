@@ -6,7 +6,6 @@ import {
   ForwardControl,
   PlaybackRateMenuButton,
   BigPlayButton,
-  PosterImage,
 } from "video-react";
 import VideoItem from "../VideoItem";
 
@@ -18,15 +17,18 @@ const sources = {
   bunnyTrailer: "http://media.w3.org/2010/05/bunny/trailer.mp4",
   bunnyMovie: "http://media.w3.org/2010/05/bunny/movie.mp4",
   test: "http://media.w3.org/2010/05/video/movie_300.webm",
+  aws: 'https://lecture-forager.s3.ap-south-1.amazonaws.com/videos/c5ce0567-35b7-466c-beed-987eb14c9de0SpinupanNginxDockerContainerasaLoadBalancer.mp4'
 };
 
+const moviePath = '/home/ritwiz/Desktop/github.com/lecture-forager/videos/Spin up an Nginx Docker Container as a LoadBalancer.mp4'
 export default class VideoPlayerTab extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
-      source: sources.bunnyMovie,
-      keywords: [],
+      source: sources.aws,
+      keywords: this.props.data.filter(word => {
+        return this.props.keyword.includes(word.word);
+      }),
     };
     this.seek = this.seek.bind(this);
   }
@@ -69,17 +71,6 @@ export default class VideoPlayerTab extends Component {
         this.changePlayingStatus(false);
       });
   }
-  componentDidUpdate() {
-    if (this.state.keywords.length === 0) {
-      this.setState({
-        keywords: [
-          ...this.props.data.filter((word) => {
-            return this.props.keyword.includes(word.value.trim());
-          }),
-        ],
-      });
-    }
-  }
 
   handleStateChange(state) {
     // copy player state to this component's state
@@ -95,43 +86,51 @@ export default class VideoPlayerTab extends Component {
   }
 
   render() {
+    console.log(this.state, this.props);
     return (
-      <>
-        <Player
-          ref={(player) => {
-            this.player = player;
-          }}
-          fluid={false}
-          width={600}
-        >
-          <source src={this.state.source} />
-          <BigPlayButton position="center" />
-          <ControlBar autoHide={true}>
-            <ReplayControl seconds={10} order={1.1} />
-            <ForwardControl seconds={30} order={1.5} />
-            <PlaybackRateMenuButton
-              rates={[2.5, 2, 1.75, 1.5, 1.25, 1, 0.75]}
-              order={7.1}
-            />
-          </ControlBar>
-        </Player>
+      <div className="lf_video_play">
+        <div className="main_video">
+          <Player
+            ref={(player) => {
+              this.player = player;
+            }}
+            fluid={false}
+            width={600}
+          >
+            <source src={this.state.source} />
+            <BigPlayButton position="center" />
+            <ControlBar autoHide={true}>
+              <ReplayControl seconds={10} order={1.1} />
+              <ForwardControl seconds={30} order={1.5} />
+              <PlaybackRateMenuButton
+                rates={[2.5, 2, 1.75, 1.5, 1.25, 1, 0.75]}
+                order={7.1}
+              />
+            </ControlBar>
+          </Player>
+        </div>
+        <div className="lf_title">
+            {this.props.title}
+        </div>
+        <div className="lf_description">
+            {this.props.description}
+        </div>
         <div className="control_bar">
           {this.state.keywords.map((keyword, i) => {
             return (
               <div
                 className={i.toString() + "_control_bar control_bar_item"}
-                onClick={this.seek(parseInt(keyword.start_time))}
+                onClick={this.seek(parseInt(keyword.startTime))}
                 key={i}
               >
-                {keyword.value}({keyword.start_time})
+                {keyword.word}({Math.round(100 * keyword.startTime / 60) / 100})
               </div>
             );
           })}
         </div>
         <div>
-        <VideoItem data={this.props.videoInformation} />
         </div>
-      </>
+      </div>
     );
   }
 }

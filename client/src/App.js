@@ -21,36 +21,23 @@ const App = () => {
     if (newSearchTerm.length === 0) setSearchStarted(false);
     setSearchTerm(newSearchTerm);
   }
-  const startSearch = async () => {
-    setSearchStarted(true);
-    try {
-      const response = await axios.get(`${SERVER_HOST}/video/multiple`, {
-        params: {
-          search: searchTerm
-        },
-      });
-      setVideoList(response.data.videos);
-    } catch (err) {
-      console.log(err);
-    }
-
-  }
   return (
     <Router>
       <div>
-        <Header />
+        <Header searchTerm={searchTerm} searchT/>
         <div
-          className="container"
+          className="container-fluid"
           style={{
             minHeight: "100vh",
             marginTop: "80px",
           }}
         >
+          <NotificationContainer />
           <Switch>
             <Route path="/" exact component={LandingPage} />
+            <Route path="/list" exact component={VideoList} />
             <Route path="/upload" exact component={UploadPage} />
             <Route path="/video" exact component={VideoList} />
-            <Route path="/test" exact component={VideoPlayerTab} />
             <Route path="/videoplayer" exact component={VideoPlayer} />
           </Switch>
         </div>

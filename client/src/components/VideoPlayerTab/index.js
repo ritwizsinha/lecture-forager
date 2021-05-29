@@ -55,7 +55,6 @@ export default function VideoPlayerTab(props) {
     <div>
       <Player
         ref={(player) => {
-          console.log(player,'hi')
           setPlayerRef(player);
         }}
       >

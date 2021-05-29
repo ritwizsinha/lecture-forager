@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search } from 'react-bootstrap-icons';
 import './index.css';
+import { Link } from 'react-router-dom';
 
-function SearchBar({
-    searchTerm,
-    setSearchTerm,
-    startSearch
-}) {
+function SearchBar() {
+    const [searchTerm, setSearchTerm] = useState('');
     return (
         <div className="lf_search">
             <div className="input-group">
-                <input type="text" className="form-control" placeholder="Search for Topic" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+                <input type="text" className="form-control" placeholder="Search for Topic" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 <div className="lf_search-icon">
-                    <button type="submit" onClick={startSearch}><Search /></button>
+                    <Link to={{
+                        pathname: `/list`,
+                        state: {
+                            searchTerm
+                        }
+                    }}>
+                        <button type="submit"><Search /></button>
+                    </Link>
                 </div>
             </div>
         </div>

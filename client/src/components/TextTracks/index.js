@@ -1,17 +1,18 @@
 import React from "react";
 
-export default function TextTracks(props) {
-  const textItems = props.data.map((item, i) => {
+export default function TextTracks({ data }) {
+
+  const textItems = data.filter(item => item !== '.' && item !== ',').map((item, i) => {
     item.value += " ";
     return (
       <span
         className={i.toString() + "_class_id text_transcript"}
         key={i.toString() + "_class_id"}
       >
-        {item.value}&nbsp;
+        {item.word}&nbsp;
       </span>
     );
   });
 
-  return <>{textItems}</>;
+  return <div>{textItems}</div>;
 }
