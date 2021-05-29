@@ -1,0 +1,62 @@
+.lf_main_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lf_main_header {
+    width: 50%;
+    text-align: center;
+    height: 350px;
+    justify-content: center;
+    position: relative;
+}
+
+.lf_main_header_content {
+    font-family: 'poppins';
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 25px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
+.lf_main_description {
+    font-family: 'poppins';
+    font-size: 30px;
+    font-weight: lighter;
+}
+
+.lf_oauth_container {
+    margin-top: 5%;
+}
+.btn_content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.github_login_btn {
+
+}
+
+@media (max-width: 500px) {
+
+    .lf_main_header {
+        height: 200px;
+    }
+    .lf_main_header_content {
+        font-size: 40px;
+        letter-spacing: 15px;
+    }
+
+    .lf_main_description {
+        font-size: 20px;
+        text-align: center;
+    }
+}

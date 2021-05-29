@@ -1,8 +1,10 @@
 const aws = require('aws-sdk');
+const 
 const transcribe = new aws.TranscribeService();
 const path = require('path');
 const LANGUAGE_CODE = 'en-US'
 const OUTPUT_BUCKET = 'lecture-forager';
+const folder = '/transcriptions';
 
 exports.handler = (event, context) => {
     const eventRecord = event.Records && event.Records[0],
@@ -20,7 +22,7 @@ exports.handler = (event, context) => {
     }
 
     const fileUri = `https://${inputBucket}.s3.amazonaws.com/${key}`,
-        jobName = `s3-lambda-audio-transcribe-${id}`;
+    jobName = `s3-lambda-audio-transcribe-${id}`;
 
     const params = {
         LanguageCode: LANGUAGE_CODE,
@@ -28,9 +30,9 @@ exports.handler = (event, context) => {
             MediaFileUri: fileUri
         },
         MediaFormat: extension,
+        OutputKey: folder,
         TranscriptionJobName: jobName,
         OutputBucketName: OUTPUT_BUCKET
     };
-    const req = transcribe.startTranscriptionJob(params).promise();
     return transcribe.startTranscriptionJob(params).promise();
 };

@@ -2,7 +2,8 @@
 import * as AWS from 'aws-sdk';
 import * as multer from "multer"
 import * as multerS3 from "multer-s3";
-import {Request} from 'express';
+import * as path from 'path';
+import { Request } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { AWS_ACCESS_ID, AWS_USER_SECRET_KEY, AWS_BUCKET_NAME } from '../constants/config';
 
@@ -12,7 +13,7 @@ AWS.config.update({
     signatureVersion: 'v4'
 });
 
-const S3 = new AWS.S3();
+export const S3 = new AWS.S3();
 
 const getUniqFileName = (originalname: string) => {
     const name = uuidv4();
@@ -30,10 +31,22 @@ export const handleUploadMiddleware = multer({
             const fileName = getUniqFileName(file.originalname);
             const s3_inner_directory = 'videos';
             const finalPath = `${s3_inner_directory}/${fileName}`;
-
             file.newName = fileName;
-
-            cb(null, finalPath );
+            cb(null, finalPath);
         }
     })
 });
+
+
+export const handleLocalUploadMiddleWare = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, path.join(__dirname, '../../uploads'));
+        },
+        filename: function (req, file, cb) {
+            const fileName = file.originalname;
+            req['fileName'] = fileName;
+            cb(null, fileName);
+        },
+    })
+})
