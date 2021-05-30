@@ -44,7 +44,8 @@ export const handleLocalUploadMiddleWare = multer({
             cb(null, path.join(__dirname, '../../uploads'));
         },
         filename: function (req, file, cb) {
-            const fileName = file.originalname;
+            let fileName = file.originalname;
+            fileName = fileName.split(' ').join('');
             req['fileName'] = fileName;
             cb(null, fileName);
         },

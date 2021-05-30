@@ -6,16 +6,12 @@ import { getVideoListFromSearch } from '../middleware/getVideoListFromSearch';
 import { getVideoInfoAndTransript } from '../middleware/getVideoInfoAndTranscript';
 import { getTranscriptionWithTimestamps } from '../middleware/getTranscriptionFile';
 import { cleanTranscription } from '../middleware/cleanTranscription';
-import * as fs from 'fs';
-import * as path from 'path';
-
 
 export const router = Router();
-router.get('/video',getVideoInfoAndTransript, getTranscriptionWithTimestamps, cleanTranscription, (req, res) => {
-    // Return Video name thumbnail and other properties
-    const data = req['video-data'];
-    console.log(data);
-    return res.status(200).json(data);
+
+router.get('/video', getVideoInfoAndTransript, getTranscriptionWithTimestamps, cleanTranscription, (req, res) => {
+    const videoData = req['video-data'];
+    return res.status(200).json(videoData);
 });
 
 router.get('/video/multiple', getVideoListFromSearch, (req, res) => {

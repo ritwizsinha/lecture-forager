@@ -8,7 +8,8 @@
     "start": "NODE_ENV=development npm-run-all --parallel watch:server watch:build",
     "watch:build": "webpack --watch",
     "watch:server": "nodemon --watch \"./dist\"",
-    "dev": "nodemon --config nodemon.json src/main.ts"
+    "dev": "nodemon --config nodemon.json src/main.ts",
+    "prod": "node ./src/main.js"
   },
   "keywords": [],
   "author": "",

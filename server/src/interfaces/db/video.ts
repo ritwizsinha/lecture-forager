@@ -49,7 +49,15 @@ class VideoTable extends DBWrapper {
         VALUES ($1, $2, $3, $4)`;
         return DBWrapper.pool.query(query, [title, description, fileName, keywords]);
     }
-
+    async updateKeywords({
+        id,
+        keywords,
+    }) {
+        const query = `UPDATE ${this.tablename}
+        SET KEYWORDS = $1
+        WHERE id = $2`;
+        return DBWrapper.pool.query(query, [keywords, id]);
+    }
     async getVideosMetadataMatchingSearch(searchText) {
         const query = `
         SELECT id, title, description, filename, keywords
@@ -63,6 +71,13 @@ class VideoTable extends DBWrapper {
     async getAll() {
         const query = `SELECT * FROM ${this.tablename}`;
         return DBWrapper.pool.query(query);
+    }
+
+    async getVideo(id) {
+        const query = `SELECT id, filename, title, description, keywords FROM ${this.tablename}
+        WHERE id = $1`;
+        const { rows } = await DBWrapper.pool.query(query, [id]);
+        return rows[0];
     }
 }
 

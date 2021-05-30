@@ -8,9 +8,9 @@ export default async (job)  => {
         const audioFileName = `${fileName.slice(0, fileName.lastIndexOf('.'))}.mp3`;
         const absPath = path.join(__dirname, `../../../audios/${audioFileName}`);
         const key = `audios/${id + audioFileName}`;
-        // const response = await uploadVideoToS3(absPath, key);
+        const response = await uploadVideoToS3(absPath, key);
         await updateAudioId(id, key);
-        // console.log(response);
+        console.log(response);
 
         return Promise.resolve({
             response: 'done',

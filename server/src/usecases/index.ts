@@ -7,9 +7,10 @@ import { makeSearchVideos } from './searchVideos';
 import { extractThumbnailFromVideo } from './createVideoThumbnail';
 import { createUpdateAudioId } from './updateAudioId';
 import { createUpdateStorageId } from './updateStorageId'; 
-import { downloadTranscriptAndTimestamps } from './downloadTranscriptAndTimestamps';
 import { createUpdateKeywords } from './updateKeywords';
-
+import { createGetVideoDetails } from './getVideoDetails';
+import { downloadTranscriptAndTimestamps } from './downloadTranscriptAndTimestamps';
+ 
 import { VideoDB } from '../interfaces/db/video';
 import { S3Uploader } from '../interfaces/uploader/AWSUploader';
 import { VideoConverter } from '../interfaces/converter/VideoConverter';
@@ -26,5 +27,6 @@ export const searchVideos = makeSearchVideos(VideoDB);
 export const extractThumbnail = extractThumbnailFromVideo(npmExtractThumbnailFromVideo);
 export const updateStorageId = createUpdateStorageId(VideoDB);
 export const updateAudioId = createUpdateAudioId(VideoDB);
-export const getTranscriptAndTimestamps = downloadTranscriptAndTimestamps(S3Downloader);
 export const updateKeywords = createUpdateKeywords(VideoDB);
+export const getVideoDetails = createGetVideoDetails(VideoDB);
+export const getTranscriptAndTimestamps = downloadTranscriptAndTimestamps(S3Downloader);

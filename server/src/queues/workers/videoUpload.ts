@@ -7,8 +7,8 @@ export default async (job)  => {
     try {
         const absPath = path.join(__dirname, `../../../uploads/${fileName}`);
         const key = `videos/${id + fileName}`;
-        // const response = await uploadVideoToS3(absPath, key);
-        // console.log(response);
+        const response = await uploadVideoToS3(absPath, key);
+        console.log(response);
         await updateStorageId(id, key);
         Promise.resolve();
     } catch(err) {

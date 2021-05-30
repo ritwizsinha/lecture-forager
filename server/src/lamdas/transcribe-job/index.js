@@ -6,13 +6,6 @@ const LANGUAGE_CODE = 'en-US'
 const OUTPUT_BUCKET = 'lecture-forager';
 const folder = 'transcriptions/';
 
-const client = new Client({
-    user: 'lectureforager',
-    host: 'lectureforager.chkxp6opyrm4.ap-south-1.rds.amazonaws.com',
-    database: 'lectureforager',
-    password: 'lectureforager',
-    port: 5432,
-});
 
 exports.handler = (event, context) => {
     const eventRecord = event.Records && event.Records[0],
@@ -29,8 +22,11 @@ exports.handler = (event, context) => {
         throw 'Invalid file extension, the only supported AWS Transcribe file types are MP3, MP4, WAV, FLAC.';
     }
 
-    const fileUri = `https://${inputBucket}.s3.amazonaws.com/${key}`,
-    jobName = `s3-lambda-audio-transcribe-${id}`;
+    const fileUri = `https://${inputBucket}.s3.amazonaws.com/${key}`;
+    console.log(fileUri);
+    const fileArr = key.split('/');
+    const fileNameWithExt = fileArr[fileArr.length - 1];
+    const jobName = fileNameWithExt.slice(0, fileNameWithExt.lastIndexOf('.'));
     // const query = `UPDATE Videos
     // SET transcription_filename = $1.json
     // WHERE storage_id = $2`;
