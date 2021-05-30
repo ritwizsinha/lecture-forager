@@ -17,18 +17,20 @@ const sources = {
   bunnyTrailer: "http://media.w3.org/2010/05/bunny/trailer.mp4",
   bunnyMovie: "http://media.w3.org/2010/05/bunny/movie.mp4",
   test: "http://media.w3.org/2010/05/video/movie_300.webm",
-  aws: 'https://lecture-forager.s3.ap-south-1.amazonaws.com/videos/c5ce0567-35b7-466c-beed-987eb14c9de0SpinupanNginxDockerContainerasaLoadBalancer.mp4'
+  aws: "https://lecture-forager.s3.ap-south-1.amazonaws.com/videos/c5ce0567-35b7-466c-beed-987eb14c9de0SpinupanNginxDockerContainerasaLoadBalancer.mp4",
 };
 
-const moviePath = '/home/ritwiz/Desktop/github.com/lecture-forager/videos/Spin up an Nginx Docker Container as a LoadBalancer.mp4'
+const moviePath =
+  "/home/ritwiz/Desktop/github.com/lecture-forager/videos/Spin up an Nginx Docker Container as a LoadBalancer.mp4";
 export default class VideoPlayerTab extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       source: sources.aws,
-      keywords: this.props.data.filter(word => {
+      keywords: this.props.data.filter((word) => {
         return this.props.keyword.includes(word.word);
       }),
+      bookmarks: [],
     };
     this.seek = this.seek.bind(this);
   }
@@ -70,6 +72,20 @@ export default class VideoPlayerTab extends Component {
       .addEventListener("click", () => {
         this.changePlayingStatus(false);
       });
+
+    if (
+      localStorage.getItem(
+        this.props.data.jobName + "_video_lecture_forager"
+      ) !== null
+    ) {
+      this.setState({
+        bookmarks: [
+          ...localStorage
+            .getItem(this.props.data.jobName + "_video_lecture_forager")
+            .split(","),
+        ],
+      });
+    }
   }
 
   handleStateChange(state) {
@@ -83,6 +99,18 @@ export default class VideoPlayerTab extends Component {
     return () => {
       this.player.seek(seconds);
     };
+  }
+
+  addBookmarks(newBookmarkTime) {
+    this.setState((prevState) => {
+      localStorage.setItem(
+        this.props.data.jobName + "_video_lecture_forager",
+        [...prevState.bookmarks, newBookmarkTime.toString()].toString()
+      );
+      return {
+        bookmarks: [...prevState.bookmarks, newBookmarkTime.toString()],
+      };
+    });
   }
 
   render() {
@@ -109,12 +137,8 @@ export default class VideoPlayerTab extends Component {
             </ControlBar>
           </Player>
         </div>
-        <div className="lf_title">
-            {this.props.title}
-        </div>
-        <div className="lf_description">
-            {this.props.description}
-        </div>
+        <div className="lf_title">{this.props.title}</div>
+        <div className="lf_description">{this.props.description}</div>
         <div className="control_bar">
           {this.state.keywords.map((keyword, i) => {
             return (
@@ -123,13 +147,37 @@ export default class VideoPlayerTab extends Component {
                 onClick={this.seek(parseInt(keyword.startTime))}
                 key={i}
               >
-                {keyword.word}({Math.round(100 * keyword.startTime / 60) / 100})
+                {keyword.word}(
+                {Math.round((100 * keyword.startTime) / 60) / 100})
               </div>
             );
           })}
         </div>
-        <div>
+        <div className="bookmark_bar">
+          {this.state.bookmarks.map((bookmark, i) => {
+            return (
+              <div
+                className={i.toString() + "_bookmark_bar bookmark_bar_item"}
+                onClick={this.seek(parseInt(bookmark))}
+                key={i}
+              >
+                {Math.round((100 * bookmark) / 60) / 100}
+              </div>
+            );
+          })}
+          <div
+            className={
+              this.state.bookmarks.length.toString() +
+              "_bookmark_bar bookmark_bar_item"
+            }
+            onClick={() => {
+              this.addBookmarks(parseInt(this.state.player.currentTime));
+            }}
+          >
+            Add Bookmark
+          </div>
         </div>
+        <div></div>
       </div>
     );
   }
