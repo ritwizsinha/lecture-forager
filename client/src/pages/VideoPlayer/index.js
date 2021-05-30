@@ -41,26 +41,10 @@ export default function VideoPlayerData({ location: { state } }) {
       </div>
     );
   } else {
-    return (
-      <VideoPlayer
-        transcriptData={transcriptData}
-        text={text}
-        title={state.title}
-        description={state.description}
-        keywords={state.keywords}
-        searchTerm={state.searchTerm}
-      />
-    );
+    return <VideoPlayer transcriptData={transcriptData} text={text} title={state.title} description={state.description}  keywords={state.keywords} searchTerm={state.searchTerm} id = {state.id} filename={state.filename}/>
   }
 }
-function VideoPlayer({
-  transcriptData,
-  text,
-  title,
-  description,
-  keywords,
-  searchTerm,
-}) {
+function VideoPlayer({ transcriptData, text, title, description, keywords, searchTerm, id, filename }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [timer, setTimer] = useState(0);
   console.log(searchTerm);
@@ -103,26 +87,21 @@ function VideoPlayer({
   return (
     <div className="video_player_box">
       <div className="video_player_tab">
-        {!transcriptData.length && (
-          <div className="gif_loader">
-            <Loader type="Circles" color="#00BFFF" height={100} width={100} />
-          </div>
-        )}
-        {transcriptData.length && (
-          <VideoPlayerTab
-            changeStatus={changeStatus}
-            ref={refToChild}
-            data={transcriptData}
-            videoInformation={{
-              title,
-              body: description,
-              tags: keywords.split(","),
-            }}
-            title={title}
-            description={description}
-            keyword={searchTerm.split(" ")}
-          />
-        )}
+         <VideoPlayerTab
+          changeStatus={changeStatus}
+          ref={refToChild}
+          data={transcriptData}
+          videoInformation={{
+            title,
+            body: description,
+            tags: keywords.split(',')
+          }}
+          title={title}
+          description={description}
+          keyword={searchTerm.split(' ')}
+          id={id}
+          filename={filename}
+        /> 
       </div>
       <div className="text_tab">
         {!transcriptData.length && (
