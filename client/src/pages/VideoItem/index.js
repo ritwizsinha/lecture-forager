@@ -36,7 +36,7 @@ export default function VideoItem({ videoMeta, searchTerm }) {
                         searchTerm
                     }
                 }}>
-                    <img src={`${SERVER_HOST}/static/${filename.slice(0, filename.lastIndexOf('.'))}/tn.png`} onError={() => { this.src = './preloader.gif' }} alt="" className="image_body" />
+                    <img src={`${SERVER_HOST}/static/${filename.slice(0, filename.lastIndexOf('.'))}/tn.png`}  alt="" className="image_body" />
                 </Link>
             </div>
             <div className="video_content">

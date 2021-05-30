@@ -25,7 +25,7 @@ export default class VideoPlayerTab extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      source: sources.aws,
+      source: `https://lecture-forager.s3.ap-south-1.amazonaws.com/videos/${props.id + props.filename}`,
       keywords: this.props.data.filter(word => {
         return this.props.keyword.includes(word.word);
       }),
