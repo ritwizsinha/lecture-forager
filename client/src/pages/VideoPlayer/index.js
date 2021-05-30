@@ -1,15 +1,15 @@
 import React, { useState, useEffect, createRef } from "react";
-import axios from 'axios';
+import axios from "axios";
 import Loader from "react-loader-spinner";
 import VideoPlayerTab from "../../components/VideoPlayerTab/test.js";
 import "./index.css";
-import { SERVER_HOST } from '../../constants';
+import { SERVER_HOST } from "../../constants";
 
 import TextTracks from "../../components/TextTracks";
 export default function VideoPlayerData({ location: { state } }) {
   console.log(state);
   const [loadingOrError, setLoadingOrError] = useState(true);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [transcriptData, setTranscriptData] = useState([]);
 
   useEffect(() => {
@@ -19,26 +19,27 @@ export default function VideoPlayerData({ location: { state } }) {
         const response = await axios.get(`${SERVER_HOST}/video`, {
           params: {
             filename,
-            id
-          }
+            id,
+          },
         });
         setLoadingOrError(false);
         setText(response.data.text);
         setTranscriptData(response.data.timestamps);
-        console.log(response.data)
-      }
-      catch (err) {
+        console.log(response.data);
+      } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     f();
   }, []);
 
   if (!transcriptData.length) {
-    return (<div className="gif_loader">
-      <Loader type="Circles" color="#00BFFF" height={100} width={100} />
-    </div>)
+    return (
+      <div className="gif_loader">
+        <Loader type="Circles" color="#00BFFF" height={100} width={100} />
+      </div>
+    );
   } else {
     return <VideoPlayer transcriptData={transcriptData} text={text} title={state.title} description={state.description}  keywords={state.keywords} searchTerm={state.searchTerm} id = {state.id} filename={state.filename}/>
   }
