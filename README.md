@@ -7,7 +7,7 @@ Some resources to start the hack:
 - [Elastic Search](https://towardsdatascience.com/building-a-video-search-engine-b93305126b59)
 - [Amazon Transcribe](https://us-east-2.console.aws.amazon.com/transcribe/home?region=us-east-2#welcome)
 - [Elastic Search](https://blog.logrocket.com/full-text-search-with-node-js-and-elasticsearch-on-docker/)
-- [AWS Architecture for Video Upload](https://aws.amazon.com/blogs/machine-learning/analyzing-contact-center-calls-part-1-use-amazon-transcribe-and-amazon-comprehend-to-analyze-customer-sentiment/)
+- [AWS Architecture for Video Upload](https://aws.amazon.com/blogs/machine-learning/analyzing-contact-center-calls-part-1-use-amazon-transcribe-and-amazon-comprehend-to-analyze-customer-sentiasdment/)
 - [Chunking video for effecient send using HTTP]()
 - [Connecting AWS Transcribe with AWS and Lambda](https://towardsdatascience.com/speech-to-text-using-aws-transcribe-s3-and-lambda-a6e88fb3a48e)
 - [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
