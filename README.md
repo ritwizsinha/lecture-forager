@@ -2,6 +2,9 @@
 ## A search engine used to index the class lectures uploaded to it and create a better way to study online
 
 
+
+
+Final PPT: [Amazon HackOn](https://docs.google.com/presentation/d/1BHECZ3y1uM5yhqO-iKB7efPvNsr7rB36qsYkS9SbJ60/edit)
 Some resources to start the hack:
 - [Building a video search engine](https://towardsdatascience.com/building-a-video-search-engine-b93305126b59)
 - [Elastic Search](https://towardsdatascience.com/building-a-video-search-engine-b93305126b59)
