@@ -1,5 +1,5 @@
 # Lecture Forager
-## A search engine used to index the class lectures uploaded to it and create a better way to study online
+## A search engine on instances of lecture videos to allow selective topics instead of watching the whole lectures
 ![image](https://user-images.githubusercontent.com/43509699/124737197-5a872880-df35-11eb-8b1b-da9051352f6b.png)
 ![image](https://user-images.githubusercontent.com/43509699/124737778-ebf69a80-df35-11eb-9ccf-226aea37957d.png)
 ![image](https://user-images.githubusercontent.com/43509699/124737861-ffa20100-df35-11eb-9c47-c3ed62f843e6.png)
