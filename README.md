@@ -1,5 +1,5 @@
 # Lecture Forager
-A search engine used to index the class lectures uploaded to it and create a better way to study online
+## A search engine used to index the class lectures uploaded to it and create a better way to study online
 
 
 Some resources to start the hack:
@@ -27,12 +27,6 @@ Good to have features:
 4. Adding subtitles to the video
 5. Summarizing a particular chunk of transcription to create sort of notes. (text summarization)
 
-
-- API ENDPOINTS THOUGHT OF
-
-POST /video
-GET /video
-GET /video/multiple
 
 
 TECH STACK AND OTHERS:
